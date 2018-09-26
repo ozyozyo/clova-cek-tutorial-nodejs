@@ -15,7 +15,7 @@
 ### Clovaスキルとは
 Clovaにはデバイス購入時にそのまま利用することができるビルトインのスキルと、スキルストアに掲載されているスキルの2種類があります。
 スキルストアは、Clovaアプリを起動し、ホーム画面にある導線をタップすると開くことができます。
-(img)
+![導線](./document/img/SkillStore_Home_Link.png)
 
 Clovaスキルは、スキルストア詳細画面にて確認できる`呼び出し名`を利用して起動することができます。
 - `呼び出し名`を起動して
@@ -33,20 +33,46 @@ Clovaスキルは、スキルストア詳細画面にて確認できる`呼び�
 
 ### Clovaが提供してくれること、スキルが実装すること
 
+
 ### スキルの公開までのフロー
-- 審査を含めたフローを説明する
+スキルを公開するには以下の手順を踏む必要があります。
+* [チャネルを作成する](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Create_Channel.md)
+* [Extensionを登録する](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Register_Extension.md)
+* [対話モデルを登録する](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Register_Interaction_Model.md)
+* [対話モデルをテストする](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Test_Extension.md)
+* [Clovaデバイスでテストする](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Device_Test_Extension.md)
+* [Extensionを配布する](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Deploy_Extension.md)
+
+[Extensionを配布する](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Deploy_Extension.md)の中で、[審査をリクエストする](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Deploy_Extension.md#RequestExtensionSubmission)という項目で説明されている通り、スキルを公開する前には審査が必要になります。
 
 # 下準備
 ### LINE DevelopersとClova Developer Centerβ
+Clovaのスキルを作成するには2つのDeveloper Centerを操作する必要があります。
+* [LINE Developers](https://developers.line.me/ja/)
+* [Clova Developer Centerβ](https://clova-developers.line.me/)
 
-### LINE Developersにログインしよう
+### チャネルを作成する
+こちらのドキュメントを参考にまずはチャネルを作成しましょう。
+[チャネルを作成する](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Create_Channel.md)
 
-### プロバイダーとチャネル
+#### プロバイダーとは？
+> チャネルにアプリを提供する個人または組織。チャネルを作成するには、LINE Developersコンソールでプロバイダーを作成する必要があります。例えば、個人や企業の名前をプロバイダーとして使用できます。
+
+引用元: [用語集](https://developers.line.me/ja/docs/glossary/)
+
+スキルを実装するには、プロバイダーとチャネルの両方を作る必要があります。
+※ スキルとLINEを連携して利用するには同一のプロバイダーにBotのチャネルとスキルのチャネルを作る必要があります
 
 # スキルを作り始める
 ## ゴールとシナリオを決定する
+これから実装するスキルが提供するシナリオのゴールを決定しましょう。
+[目標を設定する](https://clova-developers.line.me/guide/#/Design/Design_Guideline_For_Extension.md#SettingGoal)
 
 ## 対話モデルを構築する
+対話モデルを構築して、これから実装するスキルサーバーへのRequestを確定させましょう
+
+対話モデルとは？->[対話モデルを定義する](https://clova-developers.line.me/guide/#/Design/Design_Guideline_For_Extension.md#DefineInteractionModel)
+実際の操作->[対話モデルを登録する](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Register_Interaction_Model.md)
 
 ## スキルサーバーを実装する
 
