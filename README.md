@@ -71,8 +71,8 @@ Clovaのスキルを作成するには2つのDeveloper Centerを操作する必�
 ## 対話モデルを構築する
 対話モデルを構築して、これから実装するスキルサーバーへのRequestを確定させましょう
 
-対話モデルとは？->[対話モデルを定義する](https://clova-developers.line.me/guide/#/Design/Design_Guideline_For_Extension.md#DefineInteractionModel)
-実際の操作->[対話モデルを登録する](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Register_Interaction_Model.md)
+* 対話モデルとは？->[対話モデルを定義する](https://clova-developers.line.me/guide/#/Design/Design_Guideline_For_Extension.md#DefineInteractionModel)
+* 実際の操作->[対話モデルを登録する](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Register_Interaction_Model.md)
 
 ## スキルサーバーを実装する
 
