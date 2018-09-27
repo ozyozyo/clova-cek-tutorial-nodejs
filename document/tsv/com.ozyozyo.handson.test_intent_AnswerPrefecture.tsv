@@ -1,0 +1,7 @@
+[INTENT SLOT]
+AnsweredPlace	CLOVA.JP_ADDRESS_KEN
+
+[INTENT EXPRESSION]
+<AnsweredPlace>愛知</AnsweredPlace>だよ
+<AnsweredPlace>大阪</AnsweredPlace>
+<AnsweredPlace>兵庫県</AnsweredPlace>です

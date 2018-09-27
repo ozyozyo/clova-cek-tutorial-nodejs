@@ -1,0 +1,8 @@
+[INTENT SLOT]
+FavoriteFood	Food
+
+[INTENT EXPRESSION]
+<FavoriteFood>手羽先</FavoriteFood>やろ
+<FavoriteFood>ガパオライス</FavoriteFood>かな
+<FavoriteFood>オムライス</FavoriteFood>
+<FavoriteFood>りんご</FavoriteFood>です
