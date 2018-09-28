@@ -3,6 +3,12 @@
 このドキュメントの通りに実装すれば、簡単なClovaスキルを動かすこと、スキルへの対話を元にLINEメッセージを送信することができ、スキルの発話結果をLIFFを使ってLINE上に表示することができます。
 はじめてのClovaスキルの実装や、ClovaスキルとLINE Botの連携にご活用ください。
 
+今日説明できないLINEの主なAPI
+* [Flex Message](https://developers.line.me/ja/docs/messaging-api/using-flex-messages/)
+* [Rich Menu](https://developers.line.me/ja/docs/messaging-api/using-rich-menus/)
+* [LINE Beacon](http://ozyozyo.hatenablog.com/entry/2016/10/16/152409)
+* [LINE Pay API](https://qiita.com/nkjm/items/b4f70b4daaf343a2bedc)
+
 ## 0.1. 必要なもの
 - LINE ID(スマホでLINEを登録し、メールアドレスの登録まで完了させてください)
 - Clovaデバイス
@@ -16,7 +22,7 @@
 ## 1.1 Clovaスキルとは
 Clovaにはデバイス購入時にそのまま利用することができるビルトインのスキルと、スキルストアに掲載されているスキルの2種類があります。
 スキルストアは、Clovaアプリを起動し、ホーム画面にある導線をタップすると開くことができます。
-![導線](./document/img/SkillStore_Home_Link.png)
+<img width="200px" src="./document/img/SkillStore_Home_Link.png" />
 
 Clovaスキルは、スキルストア詳細画面にて確認できる`呼び出し名`を利用して起動することができます。
 - `呼び出し名`を起動して
@@ -24,7 +30,7 @@ Clovaスキルは、スキルストア詳細画面にて確認できる`呼び�
 - `呼び出し名`をつないで
 
 スキルの起動をせずにスキルを利用開始することはできません。
-また、一度起動したスキルはスキルサーバーから明示的に終了するリクエストを送った場合(link: shouldEndSession)か、ユーザが`終了して`などスキルを終了する発話をするまでは、起動したスキルが応答をする状態になります。
+また、一度起動したスキルはスキルサーバーから明示的に終了するリクエストを送った場合[shouldEndSession](https://clova-developers.line.me/guide/#/CEK/References/CEK_API.md#CustomExtSessionEndedRequest)か、ユーザが`終了して`などスキルを終了する発話をするまでは、起動したスキルが応答をする状態になります。
 `ねぇClova、XXを起動して`という発話から、スキルが終了するまでを1セッションと扱います。
 
 そのため、特定のスキルを起動中に`今日の天気は？`とユーザが発言したとしても、通常のClovaのお天気機能が呼び出されることはありませんし、1度スキルが終了してしまったら再度スキルの起動を促す発話をユーザがするまで、スキルは起動状態にすることができません。
@@ -87,6 +93,7 @@ Botやスキルを実装するには、プロバイダーとチャネルの両�
 アプリ名はBotの名称になる部分です。今日はハンズオンなので適宜埋めてください。
 
 ※ Bootawardに応募するときは、必ずフリープランを選択してください。
+※ 今日はDeveloperTrialで作成してください！！！！！！
 ![](./document/img/developers.line.me_console_register_messaging-api_channel.png)
 
 同意します。
@@ -522,9 +529,11 @@ curl -X POST https://api.line.me/liff/v1/apps \
 `line://app/数字-アルファベット`
 
 初回のみ同意画面が開くので同意します。
-![同意画面](document/img/liff_agreement.jpg)
+
+<img width="200px" src="./document/img/liff_agreement.jpg" />
 
 今はまだページを作っていないので、エラーになります。skill.jsに以下のようなコードを追加してみましょう。
+
 ([src/sample/tutorial5.js](https://github.com/ozyozyo/clova-cek-tutorial-nodejs/blob/master/src/sample/tutorial5.js)を参照)
 ```
 var lastPrefecture = '未設定です';
@@ -561,4 +570,4 @@ app.get('/liff', function(req, res) {
 ```
 
 これで、スキルに最後に話しかけた都道府県が`line://app/数字-アルファベット`を開くと表示されるようになりました。
-![done](document/img/liff_done.jpg)
+<img width="200px" src="./document/img/liff_done.jpg" />
