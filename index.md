@@ -1,6 +1,6 @@
 # 0. このドキュメントについて
 このドキュメントはClovaスキルを`Node.js`で実装するための非公式なハンズオンチュートリアルです。
-このドキュメントの通りに実装すれば、簡単なClovaスキルを動かすこと、スキルへの対話を元にLINEメッセージを送信することができます。
+このドキュメントの通りに実装すれば、簡単なClovaスキルを動かすこと、スキルへの対話を元にLINEメッセージを送信することができ、スキルの発話結果をLIFFを使ってLINE上に表示することができます。
 はじめてのClovaスキルの実装や、ClovaスキルとLINE Botの連携にご活用ください。
 
 ## 0.1. 必要なもの
@@ -96,7 +96,7 @@ Botやスキルを実装するには、プロバイダーとチャネルの両�
 ![](./document/img/developers.line.me_console_register_messaging-api_channel3.png)
 
 これで、Botの作成が終わりました。作成したBotの設定画面からQRコードを読み取って、友だちになっておきましょう。
-![](./document/img/developers.line.me_console_channel_1610872857_basic_.png)
+![](./document/img/developers.line.me_console_qr_code.png)
 
 ## 2.2.3 スキルチャネルを作成する
 つぎに[Clova Developer Centerβ](https://clova-developers.line.me/)にアクセスします。
@@ -191,7 +191,8 @@ Extensionと連携するLINEのアカウントは先程作成したBotのアカ�
 そして、`Slot`として抽出したい引数に当たる部分には先程登録した`CLOVA.JP_ADDRESS_KEN`がアサインされていることがわかります。
 
 ![](./document/img/clova-developers.line.me_cek_builder_5.png)
-```やってみよう
+```
+★ やってみよう
 「私の出身は愛知県です」をサンプル発話に追加してみよう
 ```
 -> [回答はこちら](document/Tutorial_add_sample_conversation.md)
@@ -208,6 +209,7 @@ node.js/npmはインストールできていますか？
 * windows: https://qiita.com/taiponrock/items/9001ae194571feb63a5e
 * Mac: https://codenote.net/mac/homebrew/346.html
 
+完了している方は以下を実行していきます。
 ```
 $ npm init -y
 $ npm i @line/clova-cek-sdk-nodejs express body-parser
@@ -308,6 +310,7 @@ ngrok http 3000
 
 ### 3.4.2 実機から実行
 Clovaデバイスに「呼び出し名(メイン)を起動して」と発話してみましょう
+* (ハンズオン用Clovaとの接続方法)[https://www.dropbox.com/s/pln05xb6kf007dm/Clova%E3%81%A8%E3%81%AE%E6%8E%A5%E7%B6%9A%E6%96%B9%E6%B3%95.pdf?dl=0]
 
 #### 起動できない場合
 音声認識結果を確認しましょう。テストの下にある発話履歴を確認します。
@@ -334,7 +337,9 @@ Clovaデバイスに「呼び出し名(メイン)を起動して」と発話し�
 確認できたら一度、`skill.js`を実行しているターミナルでコントロールキー+Cを押してサーバーの実行を停止してください。
 
 次に`intentHandler`を以下のコードに置き換えてみてください。
-(わからなくなったら、src/sample/tutorial2.jsに全体のコードがあります)
+
+([src/sample/tutorial2.js](https://github.com/ozyozyo/clova-cek-tutorial-nodejs/blob/master/src/sample/tutorial2.js)を参照)
+
 ```
 // `IntentRequest`が呼び出されたときに実行されます
 const intentHandler = async responseHelper => {
@@ -387,11 +392,12 @@ $ node skill.js
 次に、スキルに発話したときにLINEを送信してみましょう。
 clovaのSDK同様にLINEのSDKも以下のコマンドで入手します。
 ```
-$ npm i --save @line/bot-sdk
+$ npm i @line/bot-sdk
 ```
 
 コードに以下を追加してLINEの設定を読み込みます。
-([src/sample/tutorial3.js](src/sample/tutorial3.js)を参照)
+
+([src/sample/tutorial3.js](https://github.com/ozyozyo/clova-cek-tutorial-nodejs/blob/master/src/sample/tutorial3.js)を参照)
 ```
 // LINEの設定を読みこむ
 const line = require('@line/bot-sdk');
@@ -403,7 +409,7 @@ const config = {
 const client = new line.Client(config);
 ```
 貼り付けることができたら、CHANNEL_SECRETとCHANNEL_ACCESS_TOKENを自分で設定したものに置き換えてください。
-// 図
+![](./document/img/developers.line.me_console_channel_1610872857_basic_.png)
 
 次に、intentHandler内のAnswerPrefectureのコードを以下のように置き換えます。
 ```
@@ -486,4 +492,73 @@ const prefecture = responseHelper.getSessionAttributes().prefecture;
 ```
 
 これらを利用して、好きな食べ物を答えたときに、県名も一緒に返してみましょう。
-([src/sample/tutorial4.js](src/sample/tutorial4.js)を参照)
+
+([src/sample/tutorial4.js](https://github.com/ozyozyo/clova-cek-tutorial-nodejs/blob/master/src/sample/tutorial4.js)を参照)
+
+## 3.8 LIFFを表示しよう
+[公式のドキュメント](https://developers.line.me/ja/docs/liff/registering-liff-apps/)に従ってLIFFの初期設定をしていきます。
+
+LINEから開くためのURLを作っていきます。
+```
+curl -X POST https://api.line.me/liff/v1/apps \
+-H "Authorization: Bearer {channel access token}" \
+-H "Content-Type: application/json" \
+-d '{
+  "view":{
+    "type":"tall",
+    "url":"https://から始まるngrokのURL/liff"
+  }
+}'
+```
+
+以下のようなレスポンスが返ってきます。
+```
+{
+  "liffId":"数字-アルファベット"
+}
+```
+
+このIdの場合、作成したLIFFのURLはこちらになります。スマホで開いてみましょう。
+`line://app/数字-アルファベット`
+
+初回のみ同意画面が開くので同意します。
+![同意画面](document/img/liff_agreement.jpg)
+
+今はまだページを作っていないので、エラーになります。skill.jsに以下のようなコードを追加してみましょう。
+([src/sample/tutorial5.js](https://github.com/ozyozyo/clova-cek-tutorial-nodejs/blob/master/src/sample/tutorial5.js)を参照)
+```
+var lastPrefecture = '未設定です';
+
+...
+switch (intentName) {
+  case 'AnswerPrefecture':
+    ...
+    lastPrefecture = slots.AnsweredPlace;
+...
+
+app.get('/liff', function(req, res) {
+  var html = `<html>
+    <body>
+      <head>
+        <title>LIFFテスト</title>
+        <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+      </head>
+      <script>
+        window.onload = function (e) {
+          liff.init(function (data) {
+                document.getElementById('userId').textContent = data.context.userId;;
+          });
+        };
+      </script>
+      <h2>最後に聞いた都道府県は...！</h2>
+      <span>${lastPrefecture}</span>
+      <h2>あなたのUserIdは</h2>
+      <span id="userId"></span>
+    </body>
+  </html>`;
+  res.send(html);
+});
+```
+
+これで、スキルに最後に話しかけた都道府県が`line://app/数字-アルファベット`を開くと表示されるようになりました。
+![done](document/img/liff_done.jpg)
