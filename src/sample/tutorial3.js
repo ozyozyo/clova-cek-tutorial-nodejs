@@ -31,6 +31,7 @@ const intentHandler = async responseHelper => {
       responseHelper.setSimpleSpeech(
         clova.SpeechBuilder.createSpeechText(`${slots.AnsweredPlace}なんですね`)
       );
+      // LINEを送信する
       try {
         await client.pushMessage(responseHelper.getUser().userId, {
           type: 'text',

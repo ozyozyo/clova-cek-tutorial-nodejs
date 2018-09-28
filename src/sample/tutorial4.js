@@ -35,6 +35,7 @@ const intentHandler = async responseHelper => {
       responseHelper.setSessionAttributes({
         'prefecture' : slots.AnsweredPlace
       })
+      // LINEを送信する
       try {
         await client.pushMessage(responseHelper.getUser().userId, {
           type: 'text',
