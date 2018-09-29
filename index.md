@@ -317,7 +317,7 @@ ngrok http 3000
 
 ### 3.4.2 実機から実行
 Clovaデバイスに「呼び出し名(メイン)を起動して」と発話してみましょう
-* (ハンズオン用Clovaとの接続方法)[https://www.dropbox.com/s/pln05xb6kf007dm/Clova%E3%81%A8%E3%81%AE%E6%8E%A5%E7%B6%9A%E6%96%B9%E6%B3%95.pdf?dl=0]
+* [ハンズオン用Clovaとの接続方法](https://www.dropbox.com/s/pln05xb6kf007dm/Clova%E3%81%A8%E3%81%AE%E6%8E%A5%E7%B6%9A%E6%96%B9%E6%B3%95.pdf?dl=0)
 
 #### 起動できない場合
 音声認識結果を確認しましょう。テストの下にある発話履歴を確認します。
