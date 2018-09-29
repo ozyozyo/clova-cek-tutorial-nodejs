@@ -508,6 +508,7 @@ const prefecture = responseHelper.getSessionAttributes().prefecture;
 
 LINEから開くためのURLを作っていきます。
 ```
+# Mac
 curl -X POST https://api.line.me/liff/v1/apps \
 -H "Authorization: Bearer {channel access token}" \
 -H "Content-Type: application/json" \
@@ -517,6 +518,12 @@ curl -X POST https://api.line.me/liff/v1/apps \
     "url":"https://から始まるngrokのURL/liff"
   }
 }'
+
+# Windows
+curl -X POST https://api.line.me/liff/v1/apps ^
+-H "Authorization: Bearer {channel access token}" ^
+-H "Content-Type: application/json" ^
+-d "{ ¥"view¥":{ ¥"type¥":¥"tall¥", ¥"url¥":¥"https://から始まるngrokのURL/liff¥" } }"
 ```
 
 以下のようなレスポンスが返ってきます。
@@ -571,4 +578,5 @@ app.get('/liff', function(req, res) {
 ```
 
 これで、スキルに最後に話しかけた都道府県が`line://app/数字-アルファベット`を開くと表示されるようになりました。
+
 <img width="200px" src="./document/img/liff_done.jpg" />
