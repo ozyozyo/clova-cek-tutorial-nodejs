@@ -166,7 +166,7 @@ Extensionと連携するLINEのアカウントは先程作成したBotのアカ�
 まず、シナリオのうち、ユーザーが出身地を答える部分を作ります。
 具体的には以下のビルトインスロットとカスタムスロットを作成していきます。
 * ビルトインスロット: CLOVA.JP_ADDRESS_KEN
-* カスタムスロット: AnswerPrefecture
+* カスタムインテント: AnswerPrefecture
 
 先程開いた対話モデル画面を表示し、左側のメニューの下部にあるビルトインスロットタイプの右側の＋ボタンを押してください。
 ![](./document/img/clova-developers.line.me_cek_builder_1.png)
