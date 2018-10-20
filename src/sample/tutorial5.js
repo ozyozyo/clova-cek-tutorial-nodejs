@@ -98,7 +98,7 @@ app.get('/liff', function(req, res) {
       <script>
         window.onload = function (e) {
           liff.init(function (data) {
-                document.getElementById('userId').textContent = data.context.userId;;
+                document.getElementById('userId').textContent = data.context.userId;
           });
         };
       </script>
