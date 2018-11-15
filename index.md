@@ -34,7 +34,7 @@ Clovaスキルは、スキルストア詳細画面にて確認できる`呼び�
 - `呼び出し名`をつないで
 
 スキルの起動をせずにスキルを利用開始することはできません。
-また、一度起動したスキルはスキルサーバーから明示的に終了するリクエストを送った場合[shouldEndSession](https://clova-developers.line.me/guide/#/CEK/References/CEK_API.md#CustomExtSessionEndedRequest)か、ユーザが`終了して`などスキルを終了する発話をするまでは、起動したスキルが応答をする状態になります。
+また、一度起動したスキルはスキルサーバーから明示的に終了するリクエストを送った場合[shouldEndSession](https://clova-developers.line.biz/guide/#/CEK/References/CEK_API.md#CustomExtSessionEndedRequest)か、ユーザが`終了して`などスキルを終了する発話をするまでは、起動したスキルが応答をする状態になります。
 `ねぇClova、XXを起動して`という発話から、スキルが終了するまでを1セッションと扱います。
 
 そのため、特定のスキルを起動中に`今日の天気は？`とユーザが発言したとしても、通常のClovaのお天気機能が呼び出されることはありませんし、1度スキルが終了してしまったら再度スキルの起動を促す発話をユーザがするまで、スキルは起動状態にすることができません。
@@ -54,33 +54,33 @@ Clovaはユーザの発話を、インテント/スロットという形式に�
 
 ## 1.3 スキルの公開までのフロー
 スキルを公開するには以下の手順を踏む必要があります。
-* [チャネルを作成する](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Create_Channel.md)
-* [Extensionを登録する](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Register_Extension.md)
-* [対話モデルを登録する](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Register_Interaction_Model.md)
-* [対話モデルをテストする](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Test_Extension.md)
-* [Clovaデバイスでテストする](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Device_Test_Extension.md)
-* [Extensionを配布する](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Deploy_Extension.md)
+* [チャネルを作成する](https://clova-developers.line.biz/guide/#/DevConsole/Guides/CEK/Create_Channel.md)
+* [Extensionを登録する](https://clova-developers.line.biz/guide/#/DevConsole/Guides/CEK/Register_Extension.md)
+* [対話モデルを登録する](https://clova-developers.line.biz/guide/#/DevConsole/Guides/CEK/Register_Interaction_Model.md)
+* [対話モデルをテストする](https://clova-developers.line.biz/guide/#/DevConsole/Guides/CEK/Test_Extension.md)
+* [Clovaデバイスでテストする](https://clova-developers.line.biz/guide/#/DevConsole/Guides/CEK/Device_Test_Extension.md)
+* [Extensionを配布する](https://clova-developers.line.biz/guide/#/DevConsole/Guides/CEK/Deploy_Extension.md)
 
-[Extensionを配布する](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Deploy_Extension.md)の中で、[審査をリクエストする](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Deploy_Extension.md#RequestExtensionSubmission)という項目で説明されている通り、スキルを公開する前には審査が必要になります。
+[Extensionを配布する](https://clova-developers.line.biz/guide/#/DevConsole/Guides/CEK/Deploy_Extension.md)の中で、[審査をリクエストする](https://clova-developers.line.biz/guide/#/DevConsole/Guides/CEK/Deploy_Extension.md#RequestExtensionSubmission)という項目で説明されている通り、スキルを公開する前には審査が必要になります。
 
 # 2. 下準備
 ## 2.1 LINE DevelopersとClova Developer Centerβ
 Clovaのスキルを作成するには2つのDeveloper Centerを操作する必要があります。
-* [LINE Developers](https://developers.line.me/ja/)
-* [Clova Developer Centerβ](https://clova-developers.line.me/)
+* [LINE Developers](https://developers.line.biz/ja/)
+* [Clova Developer Centerβ](https://clova-developers.line.biz/)
 
 ## 2.2 チャネルを作成する
 ### 2.2.1 プロバイダーを作成する
 プロバイダーとは？
 > チャネルにアプリを提供する個人または組織。チャネルを作成するには、LINE Developersコンソールでプロバイダーを作成する必要があります。例えば、個人や企業の名前をプロバイダーとして使用できます。
 
-引用元: [用語集](https://developers.line.me/ja/docs/glossary/)
+引用元: [用語集](https://developers.line.biz/ja/docs/glossary/)
 
 Botやスキルを実装するには、プロバイダーとチャネルの両方を作る必要があります。
 
 ※ スキルとLINEを連携して利用するには同一のプロバイダーにBotのチャネルとスキルのチャネルを作る必要があります
 
-プロバイダを作成するには、[LINE Developersのプロバイダーリスト](https://developers.line.me/console/)にアクセスして、プロバイダを新規作成します。右上の青いボタンを押してください。
+プロバイダを作成するには、[LINE Developersのプロバイダーリスト](https://developers.line.biz/console/)にアクセスして、プロバイダを新規作成します。右上の青いボタンを押してください。
 ![](./document/img/developers.line.me_console_.png)
 
 次に、プロバイダ名を入力して、確認するボタンを押します。
@@ -109,7 +109,7 @@ Botやスキルを実装するには、プロバイダーとチャネルの両�
 ![](./document/img/developers.line.me_console_qr_code.png)
 
 ## 2.2.3 スキルチャネルを作成する
-つぎに[Clova Developer Centerβ](https://clova-developers.line.me/)にアクセスします。
+つぎに[Clova Developer Centerβ](https://clova-developers.line.biz/)にアクセスします。
 スキル設定タブの最下部にある緑のボタン`LINE Developersでスキルチャネルを新規作成`をクリックします。
 
 LINE Developersに遷移するので、`Botチャネルを作成する`で作成したプロバイダーを選択します。※連携するBotとスキルのチャネルは同じプロバイダーに作成しなければいけません。
@@ -126,7 +126,7 @@ LINE Developersに遷移するので、`Botチャネルを作成する`で作成
 !!! ExtensionIdは後から変更することはできません。人と被らない値を入力する必要があります。 !!!
 
 Extensionと連携するLINEのアカウントは先程作成したBotのアカウントを選択しておいてください。
-各項目の詳細な説明は[公式ドキュメント](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Register_Extension.md)を確認してください。
+各項目の詳細な説明は[公式ドキュメント](https://clova-developers.line.biz/guide/#/DevConsole/Guides/CEK/Register_Extension.md)を確認してください。
 
 ![スキルの基本情報設定](./document/img/clova-developers.line.me_cek_create_new_extension.png)
 
@@ -140,13 +140,13 @@ Extensionと連携するLINEのアカウントは先程作成したBotのアカ�
 ![対話モデル導線](./document/img/clova-developers.line.me_cek_create_new_extension_final.png)
 
 ★ 困ったら見るべき公式ドキュメント
-[チャネルを作成する](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Create_Channel.md)
+[チャネルを作成する](https://clova-developers.line.biz/guide/#/DevConsole/Guides/CEK/Create_Channel.md)
 
 # 3. スキルを作り始める
 ## 3.1 ゴールとシナリオを決定する
 これから実装するスキルが提供するシナリオのゴールを決定しましょう。
 
-★公式ドキュメント: [目標を設定する](https://clova-developers.line.me/guide/#/Design/Design_Guideline_For_Extension.md#SettingGoal)
+★公式ドキュメント: [目標を設定する](https://clova-developers.line.biz/guide/#/Design/Design_Guideline_For_Extension.md#SettingGoal)
 
 ### 3.1.1 今日実装するシナリオ
 ハンズオンなので今日は以下のシナリオを1つずつ実装していきましょう。
@@ -162,8 +162,8 @@ Extensionと連携するLINEのアカウントは先程作成したBotのアカ�
 対話モデルを構築して、これから実装するスキルサーバーへのRequestを確定させましょう
 
 ★ 困ったら見るべき公式ドキュメント
-* 対話モデルとは？->[対話モデルを定義する](https://clova-developers.line.me/guide/#/Design/Design_Guideline_For_Extension.md#DefineInteractionModel)
-* 実際の操作->[対話モデルを登録する](https://clova-developers.line.me/guide/#/DevConsole/Guides/CEK/Register_Interaction_Model.md)
+* 対話モデルとは？->[対話モデルを定義する](https://clova-developers.line.biz/guide/#/Design/Design_Guideline_For_Extension.md#DefineInteractionModel)
+* 実際の操作->[対話モデルを登録する](https://clova-developers.line.biz/guide/#/DevConsole/Guides/CEK/Register_Interaction_Model.md)
 
 ### 3.2.1 構築を開始する
 まず、シナリオのうち、ユーザーが出身地を答える部分を作ります。
@@ -308,7 +308,7 @@ ngrok http 3000
 
 問題なく実行が終わったら、いくつかのURLが表示されるはずです。
 その中のForwardingというhttpsから始まるURLを使います。
-今回は`/clova`に実行するプログラムを配置するので、`https://${Fording URL}/clova`をコピーして、[Clova Developer Centerβ](https://clova-developers.line.me)で設定しましょう
+今回は`/clova`に実行するプログラムを配置するので、`https://${Fording URL}/clova`をコピーして、[Clova Developer Centerβ](https://clova-developers.line.biz)で設定しましょう
 
 ![](./document/img/clova-developers.line.me_cek_ server_setting.png)
 
